@@ -8,7 +8,7 @@ LeftNavigationComponent As CanvasComponent:
 
     "galLeftMenu As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
         DelayItemLoading: =true
-        Items: =CustomGallerySample
+        Items: =colNavigation
         Layout: =Layout.Vertical
         LoadingSpinner: =LoadingSpinner.Data
         TemplatePadding: =0

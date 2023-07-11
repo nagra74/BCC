@@ -97,7 +97,7 @@
       "zeroalltabindexes": false
     },
     "Author": "",
-    "BindingErrorCount": 0,
+    "BindingErrorCount": 30,
     "ContainsThirdPartyPcfControls": false,
     "DefaultConnectedDataSourceMaxGetRowsCount": 500,
     "DocumentAppType": "DesktopOrTablet",
@@ -131,6 +131,10 @@
     "UserLocale": "en-US"
   },
   "ScreenOrder": [
-    "Home"
+    "Session Dashboard",
+    "Completed",
+    "Clients",
+    "Reports",
+    "Help"
   ]
 }

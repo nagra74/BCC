@@ -1,5 +1,54 @@
 App As appinfo:
     BackEnabled: =false
+    OnStart: |-
+        =ClearCollect(
+                        colNavigation,
+                        {
+                            ID: 0,
+                            Name: "Sessions",
+                            ActiveIcon: Sessionblue,
+                            InactiveIcon:Sessiongray,
+                            Screen: 'Session Dashboard',
+                            ParentScreen: "",
+                            SortOrder: 0
+                        },
+                        {
+                            ID: 4,
+                            Name: "Completed",
+                            ActiveIcon: CompletedBlue,
+                            InactiveIcon: CompletedGray,
+                            Screen: 'Completed Screen',
+                            ParentScreen: "",
+                            SortOrder: 4
+                        },
+                        {
+                            ID: 5,
+                            Name: "Clients",
+                            ActiveIcon: ClientBlue,
+                            InactiveIcon: ClientGray,
+                            Screen: 'Clients Screen',
+                            ParentScreen: "",
+                            SortOrder: 5
+                        },
+                        {
+                            ID: 6,
+                            Name: "Reports",
+                            ActiveIcon: ReportsBlue,
+                            InactiveIcon: ReportsGray,
+                            Screen:ReportScreen,
+                            ParentScreen: "",
+                            SortOrder: 6
+                        },
+                        {
+                            ID: 7,
+                            Name: "Help",
+                            ActiveIcon:HelpBlue,
+                            InactiveIcon:Help,
+                            Screen: HelpScreen,
+                            ParentScreen: "",
+                            SortOrder: 7
+                        }
+                    );
 
     Host As hostControl.DefaultHostControlVariant:
         OnCancel: =false
