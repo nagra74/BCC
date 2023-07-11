@@ -1,26 +1,113 @@
 {
-  "ComponentIndexes": {},
+  "ComponentIndexes": {
+    "LeftNavigationComponent": 5
+  },
   "ControlUniqueGuids": {},
-  "ControlUniqueIds": {},
+  "ControlUniqueIds": {
+    "App": 1,
+    "Clients": 13,
+    "Completed": 14,
+    "galLeftMenu": 5,
+    "galleryTemplate1": 8,
+    "Help": 15,
+    "Host": 3,
+    "imgMenuIcon": 6,
+    "LeftNavigationComponent": 4,
+    "NextArrow1": 10,
+    "Rectangle1": 9,
+    "Reports": 16,
+    "Session Dashboard": 17,
+    "shpDivider": 7,
+    "Subtitle1": 12,
+    "Title1": 11
+  },
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
+  "HeaderLastSavedDateTimeUTC": "07/11/2023 12:56:12",
   "IsLegacyComponentAllowGlobalScopeCase": false,
-  "LocalConnectionIDReferences": {},
+  "LocalConnectionIDReferences": {
+    "d919ec57-dfd9-478b-a377-b9067790dc00": "\"/providers/microsoft.powerapps/apis/shared_office365users/connections/96218e0c946140ec911979736b6425e0\""
+  },
   "LocalDatabaseReferencesAsEmpty": false,
   "LocalResourceFileNames": {},
   "LocalResourceRootPaths": {},
-  "OrderComponentMetadata": {},
-  "OrderComponentTemplate": {},
-  "OrderDataSource": {},
+  "OrderComponentMetadata": {
+    "eed444b3dd9b40a8bea4d183bacdda66": 0
+  },
+  "OrderComponentTemplate": {
+    "eed444b3dd9b40a8bea4d183bacdda66": 0
+  },
+  "OrderDataSource": {
+    "colNavigation": 2,
+    "CustomGallerySample": 1,
+    "Office365Users": 0
+  },
   "OrderGroupControls": {},
   "OrderPcfTemplate": {},
   "OrderTemplate": {},
-  "OrderXMLTemplate": {},
-  "OverridablePropertiesEntry": {},
+  "OrderXMLTemplate": {
+    "gallery": 0,
+    "icon": 3,
+    "image": 1,
+    "label": 4,
+    "rectangle": 2
+  },
+  "OverridablePropertiesEntry": {
+    "App": {},
+    "Clients": {},
+    "Completed": {},
+    "galLeftMenu": {},
+    "galleryTemplate1": {},
+    "Help": {},
+    "Host": {},
+    "imgMenuIcon": {},
+    "LeftNavigationComponent": {},
+    "NextArrow1": {},
+    "Rectangle1": {},
+    "Reports": {},
+    "Session Dashboard": {},
+    "shpDivider": {},
+    "Subtitle1": {},
+    "Title1": {}
+  },
   "PCFDynamicSchemaForIRRetrievalEntry": {},
   "PCFTemplateEntry": {},
-  "PublishOrderIndices": {},
-  "ResourcesJsonIndices": {},
+  "PublishOrderIndices": {
+    "App": 0,
+    "Clients": 12,
+    "Completed": 13,
+    "galLeftMenu": 2,
+    "galleryTemplate1": 5,
+    "Help": 14,
+    "Host": 0,
+    "imgMenuIcon": 3,
+    "LeftNavigationComponent": 1,
+    "NextArrow1": 7,
+    "Rectangle1": 6,
+    "Reports": 15,
+    "Session Dashboard": 16,
+    "shpDivider": 4,
+    "Subtitle1": 9,
+    "Title1": 8
+  },
+  "ResourcesJsonIndices": {
+    "Image-SampleImage": 0
+  },
   "RuleScreenIdWithoutScreen": {},
-  "TemplateVersions": {}
+  "TemplateVersions": {},
+  "VolatileProperties": {
+    "AnalysisLoadTime": 0.0304877,
+    "ControlCount": {
+      "eed444b3dd9b40a8bea4d183bacdda66": 1,
+      "gallery": 1,
+      "galleryTemplate": 1,
+      "icon": 1,
+      "image": 1,
+      "label": 2,
+      "rectangle": 2,
+      "screen": 5
+    },
+    "DeserializationLoadTime": 1.1263031
+  },
+  "WasLocalDatabaseReferencesEmpty": true
 }
