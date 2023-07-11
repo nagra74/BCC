@@ -16,7 +16,7 @@ LeftNavigationComponent As CanvasComponent:
         Y: =40
         ZIndex: =1
 
-        Image1 As image:
+        imgMenuIcon As image:
             Height: =72
             OnSelect: =Select(Parent)
             RadiusBottomLeft: =8
@@ -74,7 +74,7 @@ LeftNavigationComponent As CanvasComponent:
             Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
             ZIndex: =4
 
-        Separator1 As rectangle:
+        shpDivider As rectangle:
             Height: =8
             OnSelect: =Select(Parent)
             Width: =Parent.TemplateWidth
