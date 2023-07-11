@@ -1,1 +1,16 @@
-{}
+{
+  "d919ec57-dfd9-478b-a377-b9067790dc00": {
+    "connectionRef": {
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/390724148/1.0.1641.3327/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users"
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "d919ec57-dfd9-478b-a377-b9067790dc00"
+  }
+}

@@ -1,26 +1,94 @@
 {
-  "ComponentIndexes": {},
+  "ComponentIndexes": {
+    "LeftNavigationComponent": 1
+  },
   "ControlUniqueGuids": {},
-  "ControlUniqueIds": {},
+  "ControlUniqueIds": {
+    "App": 1,
+    "galLeftMenu": 6,
+    "galleryTemplate1": 7,
+    "Home": 5,
+    "Host": 3,
+    "Image1": 8,
+    "LeftNavigationComponent": 4,
+    "NextArrow1": 11,
+    "Rectangle1": 13,
+    "Separator1": 12,
+    "Subtitle1": 10,
+    "Title1": 9
+  },
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
+  "HeaderLastSavedDateTimeUTC": "07/11/2023 12:46:15",
   "IsLegacyComponentAllowGlobalScopeCase": false,
-  "LocalConnectionIDReferences": {},
+  "LocalConnectionIDReferences": {
+    "d919ec57-dfd9-478b-a377-b9067790dc00": "\"/providers/microsoft.powerapps/apis/shared_office365users/connections/96218e0c946140ec911979736b6425e0\""
+  },
   "LocalDatabaseReferencesAsEmpty": false,
   "LocalResourceFileNames": {},
   "LocalResourceRootPaths": {},
-  "OrderComponentMetadata": {},
-  "OrderComponentTemplate": {},
-  "OrderDataSource": {},
+  "OrderComponentMetadata": {
+    "eed444b3dd9b40a8bea4d183bacdda66": 0
+  },
+  "OrderComponentTemplate": {
+    "eed444b3dd9b40a8bea4d183bacdda66": 0
+  },
+  "OrderDataSource": {
+    "CustomGallerySample": 1,
+    "Office365Users": 0
+  },
   "OrderGroupControls": {},
   "OrderPcfTemplate": {},
   "OrderTemplate": {},
-  "OrderXMLTemplate": {},
-  "OverridablePropertiesEntry": {},
+  "OrderXMLTemplate": {
+    "gallery": 0,
+    "icon": 3,
+    "image": 1,
+    "label": 2,
+    "rectangle": 4
+  },
+  "OverridablePropertiesEntry": {
+    "App": {},
+    "galLeftMenu": {},
+    "galleryTemplate1": {},
+    "Home": {},
+    "Host": {},
+    "Image1": {},
+    "LeftNavigationComponent": {},
+    "NextArrow1": {},
+    "Rectangle1": {},
+    "Separator1": {},
+    "Subtitle1": {},
+    "Title1": {}
+  },
   "PCFDynamicSchemaForIRRetrievalEntry": {},
   "PCFTemplateEntry": {},
-  "PublishOrderIndices": {},
-  "ResourcesJsonIndices": {},
+  "PublishOrderIndices": {
+    "App": 0,
+    "galLeftMenu": 0,
+    "galleryTemplate1": 0,
+    "Home": 4,
+    "Host": 0,
+    "Image1": 0,
+    "LeftNavigationComponent": 1,
+    "NextArrow1": 0,
+    "Rectangle1": 0,
+    "Separator1": 0,
+    "Subtitle1": 0,
+    "Title1": 0
+  },
+  "ResourcesJsonIndices": {
+    "Image-SampleImage": 0
+  },
   "RuleScreenIdWithoutScreen": {},
-  "TemplateVersions": {}
+  "TemplateVersions": {},
+  "VolatileProperties": {
+    "AnalysisLoadTime": 0.0439336,
+    "ControlCount": {
+      "eed444b3dd9b40a8bea4d183bacdda66": 1,
+      "screen": 1
+    },
+    "DeserializationLoadTime": 0.394942
+  },
+  "WasLocalDatabaseReferencesEmpty": true
 }
