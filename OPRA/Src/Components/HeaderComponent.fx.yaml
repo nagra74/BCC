@@ -1,8 +1,416 @@
 HeaderComponent As CanvasComponent:
     Fill: =RGBA(0, 0, 0, 0)
-    Height: =640
-    Width: =640
+    Height: =If(varshowproviders,App.Height,60)
+    OnReset: =Set(varshowproviders,false)
+    Width: =1370
     X: =0
     Y: =0
     ZIndex: =1
+
+    lblUserName As label:
+        Color: =PageDesign.Blue
+        DisplayMode: =DisplayMode.View
+        Font: =PageDesign.Font
+        FontWeight: =PageDesign.FontWeight1
+        Height: =30
+        PaddingBottom: =1
+        PaddingLeft: =3
+        PaddingRight: =0.00
+        PaddingTop: =0.00
+        Size: =PageDesign.Heading6FontSize
+        Text: =varLoggedInUser.'Full Name'
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =180
+        X: =imgProvidersOption.X-Self.Width-5
+        Y: =30-Self.Height
+        ZIndex: =1
+
+    lblUserJobTitle As label:
+        Color: =PageDesign.Blue
+        DisplayMode: =DisplayMode.View
+        Font: =PageDesign.Font
+        FontWeight: =PageDesign.FontWeight4
+        Height: =lblUserName.Height
+        PaddingBottom: =0
+        PaddingLeft: =3
+        PaddingRight: =0.00
+        PaddingTop: =1
+        Size: =PageDesign.Heading6FontSize
+        Text: =varImmunisationProvider.'Immunisation Provider Name'
+        VerticalAlign: =VerticalAlign.Top
+        Width: =lblUserName.Width
+        X: =lblUserName.X
+        Y: =lblUserName.Y+lblUserName.Height
+        ZIndex: =2
+
+    lblUserInitials As button:
+        BorderColor: =
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =0
+        DisplayMode: =DisplayMode.View
+        Fill: =PageDesign.Blue
+        Font: =PageDesign.Font
+        FontWeight: =PageDesign.FontWeight2
+        Height: =38
+        PaddingRight: =5.00
+        PaddingTop: =5.00
+        RadiusBottomLeft: =30
+        RadiusBottomRight: =30
+        RadiusTopLeft: =30
+        RadiusTopRight: =30
+        Size: =PageDesign.Heading6FontSize
+        Text: |-
+            =Concat(ForAll(Split(varLoggedInUser.'Full Name', " "), {Result: ThisRecord.Value}), Left(Result, 1))
+        Width: =38
+        X: =lblUserName.X-Self.Width-5
+        Y: =30-Self.Height/2
+        ZIndex: =3
+
+    imgVICLogo As image:
+        DisplayMode: =DisplayMode.View
+        Height: =32
+        Image: ='victoria-gov-logo'
+        Width: =106
+        X: =16
+        Y: =30-Self.Height/2
+        ZIndex: =5
+
+    lblEnvName As label:
+        Align: =Align.Center
+        Color: =PageDesign.Blue
+        Font: =PageDesign.Font
+        FontWeight: =FontWeight.Bold
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =5.00
+        Size: =11.00
+        Text: =LookUp('Environment Variable Values','Environment Variable Definition'.'Schema Name'="ms_environment_name").Value
+        Underline: =true
+        Visible: =LookUp('Environment Variable Values','Environment Variable Definition'.'Display Name'="Environment Name").Value<>"PROD"
+        Width: =If(Self.Text<>"PROD",100,0)
+        X: |-
+            =//(lblAppName.X-imgVICLogo.Width-imgVICLogo.X)/2+imgVICLogo.Width-Self.Width/2
+            imgVICLogo.X+imgVICLogo.Width
+        Y: =30-Self.Height/2
+        ZIndex: =6
+
+    imgProvidersOption As image:
+        AccessibleLabel: =" "
+        BorderColor: =RGBA(0, 0, 0, 0)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        DisplayMode: =If(App.ActiveScreen='Session Dashboard',DisplayMode.Edit,DisplayMode.Disabled)
+        Height: =10
+        Image: =Dropdownarrow
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: =Set(varshowproviders,!varshowproviders);
+        TabIndex: =0
+        Width: =14
+        X: =Parent.Width-26-Self.Width
+        Y: =26
+        ZIndex: =8
+
+    shpHeaderDivider As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(215, 219, 224, 1)
+        Height: =1
+        Width: =Parent.Width
+        X: =0.00
+        Y: =59
+        ZIndex: =9
+
+    htmCurrentsessioninfo As htmlViewer:
+        Color: =PageDesign.Blue
+        Font: =PageDesign.Font
+        HtmlText: |-
+            ="<div style='text-align:center; padding-top:7px'> "
+            &
+            If(
+                !IsBlank(varcurrentsession),
+                Switch(
+                    varcurrentsession.'Session Type',
+                    'Session Type'.'School Session',
+                    "School",
+                    'Session Type'.'Community Session',
+                    "Community",
+                    'Session Type'.'Corporate Session',
+                    "Corporate"
+                ) 
+                & " • " & 
+                varcurrentsession.'Expected Internet Access'
+                & " • " &
+                varcurrentsession.'Workflow Type'
+                & " | " & "<b>" &
+               Switch(
+                    varcurrentsession.'Session Type',
+                    'Session Type'.'School Session',
+                    With(
+                    {
+                        session: LookUp(
+                            'Vaccination Sessions',
+                            'Vaccination Session' = varcurrentsession.'Vaccination Session'
+                        ).'Year Level URLS'
+                    },
+                    With(
+                        {
+                            yearLevels: Filter(
+                                'Year Level URLS',
+                                'Year Level URL' in session.'Year Level URL'
+                            )
+                        },
+                        Concat(
+                            yearLevels.'Year Level',
+                            'Year Level'.Name,
+                            ", "
+                        )
+                    )
+                ),
+                    'Session Type'.'Community Session',
+                    If(CountRows(varschedule)>1,"Multiple Schedule","Schedule"),
+                    'Session Type'.'Corporate Session',
+                    varcurrentsession.Workplace.Name
+                )& " • " & 
+                varcurrentsession.Venue.Name & "</b>",
+                "No session selected"
+            )
+            &"</div>"
+        OnSelect: =///If(IsBlank(varcurrentsession),Navigate('Session Dashboard'))
+        Size: =10
+        Width: |+
+            =lblUserInitials.X-(lblEnvName.X+lblEnvName.Width)
+            /*
+            If(
+                !IsBlank(varcurrentsession),
+            Len(
+                Switch(
+                    varcurrentsession.'Session Type',
+                    'Session Type'.'School Session',
+                    "School",
+                    'Session Type'.'Community Session',
+                    "Community",
+                    'Session Type'.'Corporate Session',
+                    "Corporate"
+                ) 
+                & " • " & 
+                varcurrentsession.'Expected Internet Access'
+                & " • " &
+                varcurrentsession.'Workflow Type'
+                & "  | " & "<b>" &
+                Concat(Filter('Session Age Groups',Session.'Vaccination Session'=varcurrentsession.'Vaccination Session').'Age Group','Age Group'.Name,",")
+                & " • " & 
+                varcurrentsession.Venue.Name & "</b>")*8.5,
+                150
+            )*/
+            
+        X: =(lblUserInitials.X-lblEnvName.Width-lblEnvName.X)/2-Self.Width/4
+        Y: =30-Self.Height/2
+        ZIndex: =15
+
+    grpProviders As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =15
+
+        shpProvidersBG As rectangle:
+            AccessibleLabel: =" "
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height-Self.Y
+            OnSelect: =Set(varshowproviders,!varshowproviders);
+            TabIndex: =0
+            Visible: =varshowproviders
+            Width: =Parent.Width
+            X: =0.00
+            Y: =shpHeaderDivider.Y+shpHeaderDivider.Height
+            ZIndex: =10
+
+        btnProvidersBG As button:
+            BorderThickness: =1
+            DisabledColor: =RGBA(255, 255, 255, 1)
+            DisabledFill: =RGBA(255, 255, 255, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =PageDesign.Font
+            Height: =If(varshowproviders,90,0)
+            PaddingRight: =5.00
+            PaddingTop: =5.00
+            Size: =15.00
+            Text: =""
+            Visible: =varshowproviders
+            Width: =If(varshowproviders,310,0)
+            X: =Parent.Width-Self.Width-8
+            Y: =sphProviderarrow.Y+sphProviderarrow.Height-5
+            ZIndex: =11
+
+        sphProviderarrow As triangle:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            BorderThickness: =1
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =20
+            Visible: =varshowproviders
+            Width: =20.00
+            X: =1326.00
+            Y: =imgProvidersOption.Y+imgProvidersOption.Height+10
+            ZIndex: =12
+
+        btntransparentBG As button:
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =0
+            DisabledColor: =RGBA(255, 255, 255, 1)
+            DisabledFill: =RGBA(255, 255, 255, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =PageDesign.Font
+            Height: =btnProvidersBG.Height-2
+            PaddingRight: =5.00
+            PaddingTop: =5.00
+            Size: =15.00
+            Text: =""
+            Visible: =varshowproviders
+            Width: =btnProvidersBG.Width-2
+            X: =btnProvidersBG.Width/2+btnProvidersBG.X-Self.Width/2
+            Y: =btnProvidersBG.Height/2+btnProvidersBG.Y-Self.Height/2
+            ZIndex: =13
+
+        "galProviders As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+            AccessibleLabel: =" "
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Height: =btntransparentBG.Height-5
+            Items: =gcolProviders
+            Layout: =Layout.Vertical
+            TabIndex: =0
+            TemplatePadding: =3
+            TemplateSize: =20
+            Visible: =varshowproviders
+            Width: =btntransparentBG.Width-5
+            X: =btntransparentBG.X
+            Y: =btntransparentBG.Y+2
+            ZIndex: =14
+
+            lblProvidersName As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                Color: =PageDesign.Black
+                FocusedBorderThickness: =1
+                Font: =PageDesign.Font
+                FontWeight: =PageDesign.FontWeight4
+                Height: =20
+                OnSelect: |-
+                    =Set(varImmunisationProvider,ThisItem);
+                    
+                    Clear(gcolStaffList);
+                    Collect(
+                        gcolStaffList,
+                        Filter(
+                            'Staff Lists',
+                            User.User = varLoggedInUser.User && 
+                            'Immunisation Provider'.Account = varImmunisationProvider.Account && 
+                            Status='Status (Staff Lists)'.Active
+                        )
+                    );
+                    
+                    Clear(gcolSR);
+                     ForAll(gcolStaffList As GCL,
+                        Collect(gcolSR,Filter('Staff Rosters',Staff.'Staff List'=GCL.'Staff List' )));
+                    
+                    Clear(gcolSesSR);
+                    ForAll(
+                        gcolSR As SR,
+                        Collect(gcolSesSR,SR.Session)
+                    );
+                    
+                    
+                    ClearCollect(
+                        gcolsessions,
+                        Filter(
+                            gcolSesSR,
+                            Status='Status (Vaccination Sessions)'.Active &&
+                            'Session Type' = varselectedsessiontab && 
+                            'Session Status' = 'Session Status (Vaccination Sessions)'.'🟢 Started' && 
+                            'Start Date' < DateAdd(Today(),1) && 
+                            'Immunisation Provider'.Account = varImmunisationProvider.Account
+                        )
+                    );
+                    Set(varshowproviders,!varshowproviders);
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0.00
+                PaddingTop: =0.00
+                Size: =PageDesign.Heading5FontSize
+                TabIndex: =0
+                Text: =If(Len(ThisItem.'Immunisation Provider Name')>35,Left(ThisItem.'Immunisation Provider Name',35)&"...",ThisItem.'Immunisation Provider Name')
+                Width: =Parent.TemplateWidth - 10-Self.X
+                X: =10.00
+                ZIndex: =1
+
+            btnProviderName As button:
+                BorderThickness: =0
+                Color: =Color.Transparent
+                DisabledBorderColor: =Color.Transparent
+                DisabledColor: =Color.Transparent
+                DisabledFill: =Color.Transparent
+                Fill: =Color.Transparent
+                FocusedBorderThickness: =1
+                Font: =PageDesign.Font
+                Height: =20
+                HoverBorderColor: =Color.Transparent
+                HoverColor: =Color.Transparent
+                HoverFill: =Color.Transparent
+                OnSelect: |-
+                    =Set(varImmunisationProvider,ThisItem);
+                    /*
+                    Clear(gcolStaffList);
+                    Collect(
+                        gcolStaffList,
+                        Filter(
+                            'Staff Lists',
+                            User.User = varLoggedInUser.User && 'Immunisation Provider'.Account = varImmunisationProvider.Account && Status = 'Status (Staff Lists)'.Active
+                        )
+                    );
+                    Clear(gcolSR);
+                    ForAll(
+                        gcolStaffList As GCL,
+                        Collect(gcolSR,Filter('Staff Rosters',Staff.'Staff List'=GCL.'Staff List')));
+                    
+                    Clear(gcolSesSR);
+                    ForAll(
+                        gcolSR As SR,
+                        Collect(gcolSesSR,SR.Session)
+                    );
+                    
+                    
+                    ClearCollect(
+                        gcolsessions,
+                        Filter(
+                            gcolSesSR,
+                            Status='Status (Vaccination Sessions)'.Active &&
+                            'Session Type' = varselectedsessiontab && 
+                            'Session Status' = 'Session Status (Vaccination Sessions)'.'🟢 Started' && 
+                            'Start Date' < DateAdd(Today(),1) && 
+                            'Immunisation Provider'.Account = varImmunisationProvider.Account &&
+                            'Expected Internet Access'= 'Expected Internet Access (Vaccination Sessions)'.Online
+                        )
+                    );*/
+                    
+                    ClearCollect(
+                        gcolsessions,
+                        Filter(
+                            gcolUnfilteredSessions,
+                            'Session Type' = varselectedsessiontab && 
+                            'Immunisation Provider'.Account = varImmunisationProvider.Account
+                        )
+                    );
+                    
+                    
+                    Set(varshowproviders,!varshowproviders);
+                PressedBorderColor: =Color.Transparent
+                PressedColor: =Color.Transparent
+                PressedFill: =Color.Transparent
+                Text: =""
+                Width: =297
+                ZIndex: =2
 

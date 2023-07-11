@@ -1,62 +1,26 @@
 {
-  "ComponentIndexes": {
-    "HeaderComponent": 1,
-    "LeftNavigationComponent": 2
-  },
+  "ComponentIndexes": {},
   "ControlUniqueGuids": {},
-  "ControlUniqueIds": {
-    "App": 1,
-    "HeaderComponent": 5,
-    "Home": 4,
-    "Host": 3,
-    "LeftNavigationComponent": 6
-  },
+  "ControlUniqueIds": {},
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
-  "HeaderLastSavedDateTimeUTC": "07/11/2023 12:40:55",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {},
   "LocalDatabaseReferencesAsEmpty": false,
   "LocalResourceFileNames": {},
   "LocalResourceRootPaths": {},
-  "OrderComponentMetadata": {
-    "88af795f59b143f4a4446f04cf29d1eb": 0,
-    "eed444b3dd9b40a8bea4d183bacdda66": 1
-  },
-  "OrderComponentTemplate": {
-    "88af795f59b143f4a4446f04cf29d1eb": 0,
-    "eed444b3dd9b40a8bea4d183bacdda66": 1
-  },
+  "OrderComponentMetadata": {},
+  "OrderComponentTemplate": {},
   "OrderDataSource": {},
   "OrderGroupControls": {},
   "OrderPcfTemplate": {},
   "OrderTemplate": {},
   "OrderXMLTemplate": {},
-  "OverridablePropertiesEntry": {
-    "App": {},
-    "HeaderComponent": {},
-    "Home": {},
-    "Host": {},
-    "LeftNavigationComponent": {}
-  },
+  "OverridablePropertiesEntry": {},
   "PCFDynamicSchemaForIRRetrievalEntry": {},
   "PCFTemplateEntry": {},
-  "PublishOrderIndices": {
-    "App": 0,
-    "HeaderComponent": 0,
-    "Home": 0,
-    "Host": 0,
-    "LeftNavigationComponent": 0
-  },
+  "PublishOrderIndices": {},
   "ResourcesJsonIndices": {},
   "RuleScreenIdWithoutScreen": {},
-  "TemplateVersions": {},
-  "VolatileProperties": {
-    "AnalysisLoadTime": 0.0383384,
-    "ControlCount": {
-      "screen": 1
-    },
-    "DeserializationLoadTime": 1.835547
-  },
-  "WasLocalDatabaseReferencesEmpty": true
+  "TemplateVersions": {}
 }
