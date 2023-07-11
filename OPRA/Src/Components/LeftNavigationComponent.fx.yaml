@@ -1,90 +1,106 @@
 LeftNavigationComponent As CanvasComponent:
     Fill: =RGBA(0, 0, 0, 0)
-    Height: =640
-    Width: =640
+    Height: =App.Height
+    ParentScreen: =App.ActiveScreen
+    Width: =70
     X: =0
     Y: =0
     ZIndex: =1
 
     "galLeftMenu As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
         DelayItemLoading: =true
+        BorderStyle: =BorderStyle.None
+        Height: =CountRows(Self.AllItems)*Self.TemplateHeight+70
         Items: =colNavigation
         Layout: =Layout.Vertical
         LoadingSpinner: =LoadingSpinner.Data
         TemplatePadding: =0
-        TemplateSize: =104
-        Y: =40
+        TemplateSize: =60
+        Width: =69.00
+        X: =0.00
+        Y: =Parent.Height/2-Self.Height/2
         ZIndex: =1
 
         imgMenuIcon As image:
-            Height: =72
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Height: =23
+            Image: =If(ThisItem.Name = 'Test',ThisItem.ActiveIcon,ThisItem.InactiveIcon)
             OnSelect: =Select(Parent)
-            RadiusBottomLeft: =8
-            RadiusBottomRight: =8
-            RadiusTopLeft: =8
-            RadiusTopRight: =8
-            Width: =72
-            X: =16
-            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            PaddingBottom: =1
+            PaddingLeft: =1
+            PaddingRight: =1.00
+            PaddingTop: =1.00
+            Transparency: =If(ThisItem.Name = varMainRecord.Name,0,0.5)
+            Width: =23
+            X: =Parent.TemplateWidth/2-Self.Width/2
+            Y: =5
             ZIndex: =1
 
-        Title1 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
+        lblMenuName As label:
+            Align: =Align.Center
+            Color: =If(ThisItem.Name = 'Test',PageDesign.Blue,ColorFade(PageDesign.Gray,0.5))
+            Font: =PageDesign.Font
+            FontWeight: =PageDesign.FontWeight2
+            Height: =30
             OnSelect: =Select(Parent)
-            PaddingBottom: =0
             PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: =ThisItem.SampleHeading
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Parent.TemplateWidth - 173
-            X: =103
-            Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle1.Size * 1.8)) / 2
+            PaddingRight: =0.00
+            PaddingTop: =5.00
+            Size: =PageDesign.Label3FontSize
+            Text: =ThisItem.Name
+            Width: =Parent.TemplateWidth -2
+            X: =2
+            Y: =32
             ZIndex: =2
 
-        Subtitle1 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
-            OnSelect: =Select(Parent)
-            PaddingBottom: =0
-            PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: =ThisItem.SampleText
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Title1.Width
-            X: =Title1.X
-            Y: =Title1.Y + Title1.Height
+        shpActivebar As rectangle:
+            DisplayMode: =DisplayMode.View
+            Fill: =PageDesign.Blue
+            Height: =Parent.TemplateHeight-5
+            Visible: =ThisItem.ID = varMainRecord.ID
+            Width: =3.00
+            Y: =Parent.TemplateHeight/2-Self.Height/2
             ZIndex: =3
 
-        NextArrow1 As icon.ChevronRight:
-            AccessibleLabel: =Self.Tooltip
-            Color: =RGBA(166, 166, 166, 1)
-            Height: =50
-            Icon: =Icon.ChevronRight
-            OnSelect: =Select(Parent)
-            PaddingBottom: =16
-            PaddingLeft: =16
-            PaddingRight: =16
-            PaddingTop: =16
-            Tooltip: ="View item details"
-            Width: =50
-            X: =Parent.TemplateWidth - Self.Width - 12
-            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
-            ZIndex: =4
-
-        shpDivider As rectangle:
-            Height: =8
-            OnSelect: =Select(Parent)
+        btnMenuClick As button:
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =0
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =PageDesign.Font
+            Height: =Parent.TemplateHeight
+            HoverColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =
+            PaddingRight: =5.00
+            PaddingTop: =5.00
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =15.00
+            Text: =""
             Width: =Parent.TemplateWidth
-            Y: =Parent.TemplateHeight - Self.Height
+            X: =0.00
             ZIndex: =5
 
-        Rectangle1 As rectangle:
-            Height: =Parent.TemplateHeight - Separator1.Height
-            OnSelect: =Select(Parent)
-            Visible: =ThisItem.IsSelected
+    shpDivider As rectangle:
+        Fill: =RGBA(215, 219, 224, 1)
+        Height: =Parent.Height
+        Width: =1.00
+        X: =69.00
+        ZIndex: =2
+
+    imgLogo As image:
+        Height: =40
+        Image: =branding
+        PaddingRight: =0.00
+        PaddingTop: =0.00
+        Width: =70.00
+        X: =0.00
+        Y: =10
+        ZIndex: =6
             Width: =4
             ZIndex: =6
 
